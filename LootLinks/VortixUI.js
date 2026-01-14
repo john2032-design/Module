@@ -230,46 +230,49 @@ Copy Link
 </div>
 </div>
 `;
-                document.documentElement.insertAdjacentHTML('afterbegin', popupHTML);
-                Logger.info('✅ UI overlay injected successfully');
+                
+                requestAnimationFrame(() => {
+                    document.documentElement.insertAdjacentHTML('afterbegin', popupHTML);
+                    Logger.info('✅ UI overlay injected successfully');
 
-                try {
-                    const progressCircle = document.getElementById('progress-circle');
-                    const countdownDisplay = document.getElementById('countdown-display');
-                    const radius = 90;
-                    const circumference = 2 * Math.PI * radius;
+                    try {
+                        const progressCircle = document.getElementById('progress-circle');
+                        const countdownDisplay = document.getElementById('countdown-display');
+                        const radius = 90;
+                        const circumference = 2 * Math.PI * radius;
 
-                    if (progressCircle) progressCircle.style.strokeDasharray = circumference.toString();
+                        if (progressCircle) progressCircle.style.strokeDasharray = circumference.toString();
 
-                    let remaining = countdownSeconds;
-                    const updateInterval = 1000;
+                        let remaining = countdownSeconds;
+                        const updateInterval = 1000;
 
-                    if (countdownDisplay) countdownDisplay.textContent = remaining;
+                        if (countdownDisplay) countdownDisplay.textContent = remaining;
 
-                    const timer = setInterval(() => {
-                        if (state.bypassSuccessful) {
-                            clearInterval(timer);
-                            return;
-                        }
+                        const timer = setInterval(() => {
+                            if (state.bypassSuccessful) {
+                                clearInterval(timer);
+                                return;
+                            }
 
-                        remaining--;
+                            remaining--;
 
-                        if (countdownDisplay) countdownDisplay.textContent = remaining > 0 ? remaining : '0';
+                            if (countdownDisplay) countdownDisplay.textContent = remaining > 0 ? remaining : '0';
 
-                        if (progressCircle) {
-                            const progress = Math.max(0, Math.min(1, (countdownSeconds - remaining) / countdownSeconds));
-                            const offset = circumference - (progress * circumference);
-                            progressCircle.style.strokeDashoffset = offset;
-                        }
+                            if (progressCircle) {
+                                const progress = Math.max(0, Math.min(1, (countdownSeconds - remaining) / countdownSeconds));
+                                const offset = circumference - (progress * circumference);
+                                progressCircle.style.strokeDashoffset = offset;
+                            }
 
-                        if (remaining <= 0) {
-                            clearInterval(timer);
-                        }
-                    }, updateInterval);
+                            if (remaining <= 0) {
+                                clearInterval(timer);
+                            }
+                        }, updateInterval);
 
-                } catch (e) {
-                    Logger.error('❌ UI overlay failed to render');
-                }
+                    } catch (e) {
+                        Logger.error('❌ UI overlay failed to render');
+                    }
+                });
             }
 
             window.VortixBypassContext.ui = {
