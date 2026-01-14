@@ -1,4 +1,4 @@
-window.VortixWebSocket = (function () {
+window.VortixWebsocket = (function () {
     return {
         init: function (ctx) {
             const Logger = ctx.Logger;
@@ -184,7 +184,7 @@ window.VortixWebSocket = (function () {
 
             })();
 
-            Logger.info('✅ VortixWebSocket Module Initialized');
+            Logger.info('✅ VortixWebsocket Module Initialized');
         }
     };
 })();
