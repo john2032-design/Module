@@ -7,7 +7,7 @@ window.VortixLogger = (function () {
                 error: (m, d = '') => console.error(`[ERROR] [VortixBypass] ${m}`, d || '')
             };
             window.VortixBypassContext.Logger = Logger;
-            console.log('✅ VortixLogger Module Initialized');
+            Logger.info('✅ VortixLogger Module Initialized');
         }
     };
 })();
