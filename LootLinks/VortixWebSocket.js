@@ -184,7 +184,7 @@ window.VortixWebSocket = (function () {
 
             })();
 
-            ctx.Logger.info('✅ VortixWebSocket Module Initialized');
+            Logger.info('✅ VortixWebSocket Module Initialized');
         }
     };
 })();
