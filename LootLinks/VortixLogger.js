@@ -1,6 +1,6 @@
 window.VortixLogger = (function () {
     return {
-        init: function () {
+        init: function (ctx) {
             const Logger = {
                 info: (m, d = '') => console.info(`[INFO] [VortixBypass] ${m}`, d || ''),
                 warn: (m, d = '') => console.warn(`[WARN] [VortixBypass] ${m}`, d || ''),
